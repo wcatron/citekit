@@ -7,6 +7,7 @@
         
 		$.fn.ckLoad.assignIDs();
  	   	$.fn.ckLoad.fixLinks();
+		$.fn.ckLoad.fixImages();
     };
 	
 	$.fn.ckDisplayServiceInfo = function () {
@@ -146,6 +147,17 @@
 				}
 			});
 		}
+	};
+	$.fn.ckLoad.fixImages = function () {
+		jqString = "img." + $.fn.ckLoad.defaults.classNames.citeimg;
+		$( jqString ).each(function(index){
+				//citekit_log( $(this).attr("src"));
+				var urnString = $(this).attr("src");
+				var classString = $(this).attr("class");
+				var idString = $(this).attr("id");
+				var altString = $(this).attr("alt");
+				$(this).replaceWith("<blockquote class='" + classString + "' cite='" + urnString + "' id='" + idString + "' alt='" + altString + "'>" + urnString + "</blockquote>");
+		});
 	};
 	
 	// Plugin defaults
