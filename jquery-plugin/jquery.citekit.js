@@ -2,11 +2,10 @@
 	
 	var js_url = ''; //Default public JS folder
  
-    $.fn.ckLoad = function() {
+    $.fn.ckLoad = function(options) {
  	   	var opts = $.extend( {}, $.fn.ckLoad.defaults, options );
-        return this.filter( "blockquote" ).each(function() {
-            $( this ).append( " (" + $( this ).attr( "href" ) + ")" );
-        });
+        
+		$.fn.ckLoad.assignIDs();
  
     };
 	
@@ -36,7 +35,7 @@
 		$(this).html(message);
 		//citekit_log("Data loaded: " + dataOk);
 		return dataOk;
-	}
+	};
 	
 	$.fn.ckLoad.loadXSLT = function (ctsResponse, xsl, elemId, xsltParams) {
 		var myURL = xsl;
@@ -51,7 +50,23 @@
 			  citekit_processXML(ctsResponse, xsltData, elemId, xsltParams);
 	  		}	
 		}; 
-	}
+	};
+	
+	$.fn.ckLoad.assignIDs = function () {
+		var classNames = $.fn.ckLoad.defaults.classNames;
+		for ( whichClass in classNames){
+			var className = classNames[whichClass];
+			$('blockquote.' + className).each(function(index){
+				$(this).attr("id",className + index + "blockquote");
+			});
+			$('img.' + className).each(function(index){
+				$(this).attr("id",className + index + "img");
+			});
+			$('a.' + className).each(function(index){
+				$(this).attr("id",className + index + "link");
+			});
+		}
+	};
  
 	// Plugin defaults
 	$.fn.ckLoad.defaults = {
@@ -67,8 +82,12 @@
 				"cite-img":"http://beta.hpcc.uh.edu/tomcat/hmtcite/images",
 				"cite-collection":"http://beta.hpcc.uh.edu/tomcat/hmtcite/collections"
 			}
-		},
-  	  	
+		},	
+		"classNames":{
+			"cts":"cite-text",
+			"citeimg":"cite-image",
+			"cite":"cite-collection"
+		}
 	};
  
 }( jQuery ));
