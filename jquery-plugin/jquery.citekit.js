@@ -187,8 +187,3 @@
 	};
  
 }( jQuery ));
-
-
-function citekit_getUrlString( elementId ){
-		
-}
