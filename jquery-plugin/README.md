@@ -24,7 +24,7 @@ cts.
 
     -   *cite-img* - image url
 
-    -   *cite-text *- texts url
+    -   *cite-text* - texts url
 
     -   *cite-collection* - collections url
 
