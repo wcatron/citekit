@@ -70,8 +70,8 @@ the use of defaults.
 **Default Sources**
 
 It appeared from the original CiteKit code that there was the ability to
-assign default sources for each type of citekit element (cts,citeimg,
-cite) however that added a layer of complexity, and many if statements,
+assign default sources for each type of citekit element (cts, citeimg,
+and cite) however that added a layer of complexity, and many if statements,
 and seemed more reasonable to simplify the process. Now set one default
 source (which contains a url for each type of element) and then diverge
 from that source as needed by citing the source name instead of a
