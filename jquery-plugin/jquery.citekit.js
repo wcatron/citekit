@@ -40,7 +40,7 @@
 		return dataOk;
 	};
 	
-	$.fn.ckLoadBlockquote = function (thisURLString, pathToXSLT, xsltParams) {
+	$.fn.ckLoadBlockquote = function () {
 		var classNames = $.fn.ckLoad.defaults.classNames;
 		var xsltParams = {};
 		$(this).addClass("citekit-waiting");
