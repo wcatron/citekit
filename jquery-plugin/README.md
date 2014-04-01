@@ -15,12 +15,12 @@ like below.
 
 Then within the body of the page.
 
-Example Link
+**Example Link**
 
     <a href="urn:cts:greekLit:tlg0012.tlg001.msA:2.1-2.25" 
         class="cite-text”>urn:cts:greekLit:tlg0012.tlg001.msA:2.1-2.25</a>
 
-Example Blockquote
+**Example Blockquote**
 
     <blockquote class="cite-text source-name"
         cite="urn:cts:greekLit:tlg0012.tlg001.msA:2.1-2.25">
@@ -28,16 +28,16 @@ Example Blockquote
 
 ## Functions
 
-**\$.ckLoad**
+**$.ckLoad**
 
 Properly assigns IDs to the block quotes, fixes the links, and loads the
 data inside of a selector.
 
-**\$.ckDisplayServiceInfo**
+**$.ckDisplayServiceInfo**
 
 Displays information about the services/sources available for loading.
 
-**\$.ckLoadBlockquote**
+**$.ckLoadBlockquote**
 
 Loads the data trying to be retrieved into the blockquote element. This
 can be used for instance after loading specific data onto the page.
@@ -52,9 +52,7 @@ your own cts, classes, and more technical things.
 -   *sources* - array of different sources
 
     -   *cite-img* - image url
-
     -   *cite-text* - texts url
-
     -   *cite-collection* - collections url
 
 For complete list look at the jquery plugin file.
