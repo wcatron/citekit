@@ -10,6 +10,8 @@
 		$.fn.ckLoad.fixImages(this);
 		
 		$.fn.ckLoad.loadBlockquotes(this);
+		
+		$.fn.ckLoad.fixCompare(this);
     };
 	
 	$.fn.ckDisplayServiceInfo = function () {
@@ -290,6 +292,17 @@
 			$(this).replaceWith("<blockquote class='" + classString + "' cite='" + urnString + "' id='" + idString + "' alt='" + altString + "'>" + urnString + "</blockquote>");
 		});
 	};
+	
+	$.fn.ckLoad.fixCompare = function (elm) {
+		$(elm.selector+" div.citekit-compare").each(function(index){
+			var howManyKids = $(this).children("blockquote").length;
+			var newWidth = Math.round(90 / howManyKids);
+			newWidth = Math.round( newWidth - (newWidth / 10));
+			$(this).children().each(function(index){
+				$(this).css("max-width", (newWidth - 10) + "%");
+			});
+		});
+	}
 	
 	function getImageParams (obj) {
 		var thisSource = $.fn.ckLoad.defaults.source; //starts with default
