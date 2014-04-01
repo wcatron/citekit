@@ -15,8 +15,8 @@ like below.
 
 ### Parameters
 
-Located in the plugin file the defaults can be changed to use your own
-cts.
+Located in the jquery plugin file the defaults can be changed to use your own
+cts, classes, and more technical things.
 
 -   *source* - default source for urns
 
@@ -28,4 +28,4 @@ cts.
 
     -   *cite-collection* - collections url
 
-For compelete list look see the file.
+For complete list look at the jquery plugin file.
