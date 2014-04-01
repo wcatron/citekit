@@ -40,6 +40,28 @@
 		return dataOk;
 	};
 	
+	$.fn.loadBlockquote = function (thisURLString, pathToXSLT, xsltParams) {
+		var classNames = $.fn.ckLoad.defaults.classNames;
+		var xsltParams = {};
+		$(this).addClass("citekit-waiting");
+		// prepare params for xslt, if any
+		if ( $(this).hasClass( classNames["cite"])){ 
+			xsltParams = getCollectionParams(this);
+		}
+		if ( $(this).hasClass( classNames["citeimg"])){ 
+			//console.log("Getting params for id: " + $(this).attr("id"));
+			xsltParams = getImageParams(this);
+		}
+		thisURLString = $(this).ckGetURLString();
+		if (thisURLString.substring(0,7) == "http://"){
+			pathToXSLT = getXSLTString(this);
+			loadXMLDoc( thisURLString, pathToXSLT, this, xsltParams);
+		} else {
+			$(this).append(" (service not found for this URN)");
+			$(this).removeClass("citekit-waiting");
+		}
+	}
+	
 	$.fn.ckGetURLString = function () {
 		var thisURN = "";
 		var thisType = "";
@@ -112,7 +134,8 @@
 			var xsltParams = {};	
 
 			$( jqString ).each(function(index){
-				$(this).addClass("citekit-waiting");
+				$(this).loadBlockquote();
+				/*$(this).addClass("citekit-waiting");
 				// prepare params for xslt, if any
 				if ( $(this).hasClass( classNames["cite"])){ 
 					xsltParams = getCollectionParams(this);
@@ -128,7 +151,7 @@
 				} else {
 					$(this).append(" (service not found for this URN)");
 					$(this).removeClass("citekit-waiting");
-				}
+				}*/
 			});
 		}
 	}
