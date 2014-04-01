@@ -13,10 +13,23 @@ like below.
         });
     </script>
 
+## Functions
+
+**\$.ckLoad**
+
+Properly assigns IDs to the block quotes, fixes the links, and loads the
+data inside of a selector.
+
+**\$.ckDisplayServiceInfo**
+
+Displays information about the services/sources available for loading.
+
+**\$.ckLoadBlockquote**
+
 ### Parameters
 
-Located in the jquery plugin file the defaults can be changed to use your own
-cts, classes, and more technical things.
+Located in the jquery plugin file the defaults can be changed to use
+your own cts, classes, and more technical things.
 
 -   *source* - default source for urns
 

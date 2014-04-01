@@ -9,14 +9,17 @@
 	<script type="text/javascript" src="jquery.citekit.js"> </script>
 	<script>
 	$(function() {
-		$(document).ckLoad();
+		$(document).ckLoad(); //Bad Selector
 		$("#citekit-sources").ckDisplayServiceInfo();
 	});
 	</script>
 	<meta name="copyright" content="2013 C.W. Blackwell, D.N. Smith, CC-License/by-nc-sa/3.0"/>
 </head>
 <body>
-
+	<h1>Embeded Text</h1>
+	<iframe src="http://beta.hpcc.uh.edu/tomcat/hmtcite/texts?request=GetPassagePlus&urn=urn:cts:greekLit:tlg0012.tlg001.msA:1.1-1.25"
+	        style="border: 0; width:130px; height:20px;"></iframe>
+<div id='just_links'>
 		<p><a href="home">Home</a></p>
 
 <h1 id="cite-kit">CITE-Kit Tester · Basic Texts</h1>
@@ -27,7 +30,7 @@
 <p>Link to named text service: <a href="urn:cts:greekLit:tlg0012.tlg001.msA:1.1-1.25" class="cite-text svc-beta-cts " >urn:cts:greekLit:tlg0012.tlg001.msA:1.1-1.25</a></p>
 <p>Link to named text service: <a href="urn:cts:greekLit:tlg0011.tlg004.fu02:1-25" class="cite-text svc-folio-cts" >urn:cts:greekLit:tlg0011.tlg004.fu02:1-25</a></p>
 <p>Link to bad text service: <a href="urn:cts:greekLit:tlg0011.tlg004.fu02:1-25" class="cite-text svc-bad-cts" >urn:cts:greekLit:tlg0011.tlg004.fu01:1-25</a></p>
-
+</div>
 <h2>Resolved Citations</h2>
 
 <h3>Default Service</h3>

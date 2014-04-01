@@ -5,11 +5,11 @@
     $.fn.ckLoad = function(options) {
  	   	var opts = $.extend( {}, $.fn.ckLoad.defaults, options );
         
-		$.fn.ckLoad.assignIDs();
- 	   	$.fn.ckLoad.fixLinks();
-		$.fn.ckLoad.fixImages();
+		$.fn.ckLoad.assignIDs(this);
+ 	   	$.fn.ckLoad.fixLinks(this);
+		$.fn.ckLoad.fixImages(this);
 		
-		$.fn.ckLoad.loadBlockquotes();
+		$.fn.ckLoad.loadBlockquotes(this);
     };
 	
 	$.fn.ckDisplayServiceInfo = function () {
@@ -40,7 +40,7 @@
 		return dataOk;
 	};
 	
-	$.fn.loadBlockquote = function (thisURLString, pathToXSLT, xsltParams) {
+	$.fn.ckLoadBlockquote = function (thisURLString, pathToXSLT, xsltParams) {
 		var classNames = $.fn.ckLoad.defaults.classNames;
 		var xsltParams = {};
 		$(this).addClass("citekit-waiting");
@@ -124,17 +124,17 @@
 		return thisString + thisURN;
 	}
 	
-	$.fn.ckLoad.loadBlockquotes = function () {
+	$.fn.ckLoad.loadBlockquotes = function (elm) {
 		var classNames = $.fn.ckLoad.defaults.classNames;
 		
 		for (whichClass in classNames) {
 			var thisURLString = "";
 			var className = classNames[whichClass];
-			var jqString = "blockquote." + className;
+			var jqString = elm.selector + " blockquote." + className;
 			var xsltParams = {};	
 
 			$( jqString ).each(function(index){
-				$(this).loadBlockquote();
+				$(this).ckLoadBlockquote();
 				/*$(this).addClass("citekit-waiting");
 				// prepare params for xslt, if any
 				if ( $(this).hasClass( classNames["cite"])){ 
@@ -246,27 +246,27 @@
 		$(elm).removeClass("citekit-waiting");
 	}
 	
-	$.fn.ckLoad.assignIDs = function () {
+	$.fn.ckLoad.assignIDs = function (elm) {
 		var classNames = $.fn.ckLoad.defaults.classNames;
 		for ( whichClass in classNames){
 			var className = classNames[whichClass];
-			$('blockquote.' + className).each(function(index){
+			$(elm.selector+' blockquote.' + className).each(function(index){
 				$(this).attr("id",className + index + "blockquote");
 			});
-			$('img.' + className).each(function(index){
+			$(elm.selector+' img.' + className).each(function(index){
 				$(this).attr("id",className + index + "img");
 			});
-			$('a.' + className).each(function(index){
+			$(elm.selector+' a.' + className).each(function(index){
 				$(this).attr("id",className + index + "link");
 			});
 		}
 	};
-	$.fn.ckLoad.fixLinks = function () {
+	$.fn.ckLoad.fixLinks = function (elm) {
 		//citekit_log( "Fixing links..." );
 		var classNames = $.fn.ckLoad.defaults.classNames;
 		for (whichClass in classNames){
 			var className = classNames[whichClass];
-			var jqString = "a." + className;
+			var jqString = elm.selector+" a." + className;
 			$( jqString ).each(function(index){
 				if ( $(this).attr("href").substring(0,7) != "http://" ){
 					var thisURLString = $(this).ckGetURLString();
@@ -279,8 +279,8 @@
 			});
 		}
 	};
-	$.fn.ckLoad.fixImages = function () {
-		jqString = "img." + $.fn.ckLoad.defaults.classNames.citeimg;
+	$.fn.ckLoad.fixImages = function (elm) {
+		jqString = elm.selector+" img." + $.fn.ckLoad.defaults.classNames.citeimg;
 		$( jqString ).each(function(index){
 			//citekit_log( $(this).attr("src"));
 			var urnString = $(this).attr("src");
