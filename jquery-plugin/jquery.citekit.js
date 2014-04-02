@@ -130,7 +130,6 @@
 	}
 	
 	$.fn.ckLoadInfiniteScrollingCSV = function(csvFileURL) {
-		
 		$.ajax({
 		  url: csvFileURL,
 		  context: this
@@ -145,7 +144,7 @@
 				var wintop = $(this).scrollTop();
 				var docheight = this.scrollHeight;
 				var winheight = $(this).height();
-				var  scrolltrigger = 0.75;
+				var  scrolltrigger = $.fn.ckLoadInfiniteScrollingCSV.defaults.scrollTrigger;
 				
 				var numLoadingBlockquotes = 0;
 				$(this).children().each(function(index,elm){
@@ -159,7 +158,7 @@
 					var currentLoadedData = $(this).data('ckCurrentLoadedData')+1;
 					if (currentLoadedData < csvData.length) {
 						$(this).data('ckCurrentLoadedData',currentLoadedData);
-						console.log("Load currentdata = "+currentLoadedData);
+						console.log("Load next data line: "+currentLoadedData);
 						$.fn.ckLoadInfiniteScrollingCSV.appendData(this,csvData[currentLoadedData]);
 					} else {
 						console.log("Reached end of data");
@@ -493,12 +492,16 @@
 		"pathImgXslt":"http://folio.dyndns-web.com/citekit/xslt/citekit-gip.xsl",
 		"pathCollXslt":"http://folio.dyndns-web.com/citekit/xslt/xslt/citekit-coll.xsl"
 	};
+	
+	$.fn.ckLoadInfiniteScrollingCSV.defaults = {
+		"scrollTrigger":0.8
+	}
  
 }( jQuery ));
 
 
 /* 
- * jQuery-csv for Infinite scrolling.
+ * jQuery-csv a plugin used in the infiniteScrolling
  * MIT License
  * https://code.google.com/p/jquery-csv/
  */
