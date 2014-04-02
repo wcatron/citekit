@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Aeneid Commentary</title>
+	<meta name="copyright" content="2013 C.W. Blackwell, D.N. Smith, CC-License/by-nc-sa/3.0"/>
+	<link rel="stylesheet" href="http://folio.dyndns-web.com/citekit/css/cite-elements.css" type="text/css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+	<script type="text/javascript" src="../jquery.citekit.js"> </script>
+	<script>
+		$(document).ready(function(){
+		    $('#scrollArea').ckLoadInfiniteScrollingCSV('infiniteScrolling.csv');
+		});
+	</script>
+	<style>
+	.infinite-scrolling {
+		overflow:scroll;
+		height:400px;
+		
+	}
+	</style>
+</head>
+<body>
+	<h1>Auto-Load from CSV</h1>
+<div class='infinite-scrolling' id='scrollArea'>
+</div>
+</body>
+</html>
