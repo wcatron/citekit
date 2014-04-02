@@ -25,6 +25,21 @@ Then within the body of the page.
     <blockquote class="cite-text source-name"
         cite="urn:cts:greekLit:tlg0012.tlg001.msA:2.1-2.25">
             urn:cts:greekLit:tlg0012.tlg001.msA:2.1-2.25 (named service)</blockquote>
+            
+**Example Infinite Scrolling**
+
+    // In the document somewhere. Be sure to set the height to a 
+    // custom height as the scrolling is done within the div.
+    <div class='infinite-scrolling' id='scrollArea'></div>
+    
+    // Javascript
+    $("#scrollArea").ckLoadInfiniteScrollingCSV('infiniteScrolling.csv');
+    
+    // CSV File Contents "classes","urn"
+    "cite-text","urn:cts:latinLit:phi0690.phi003.alignedEng:1.1-1.100"
+    "cite-text","urn:cts:latinLit:phi0690.phi003.alignedEng:1.101-1.200"
+    "cite-text","urn:cts:latinLit:phi0690.phi003.alignedEng:1.201-1.300"
+    "cite-text","urn:cts:latinLit:phi0690.phi003.alignedEng:1.301-1.400"
 
 ## Functions
 
@@ -41,6 +56,11 @@ Displays information about the services/sources available for loading.
 
 Loads the data trying to be retrieved into the blockquote element. This
 can be used for instance after loading specific data onto the page.
+
+**$.ckLoadInfiniteScrollingCSV**
+
+Create a list of Blockquotes from a CSV file and loads each line once
+the user has scrolled through a percentage of the existing content.
 
 ### Parameters
 
