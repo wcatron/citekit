@@ -4,7 +4,8 @@
  
     $.fn.ckLoad = function(options) {
  	   	var opts = $.extend( {}, $.fn.ckLoad.defaults, options);
-        
+        $.fn.ckLoad.defaults = opts;
+		
 		$.fn.ckLoad.assignIDs(this);
  	   	$.fn.ckLoad.fixLinks(this);
 		$.fn.ckLoad.fixImages(this);
@@ -129,7 +130,7 @@
 		return thisString + thisURN;
 	}
 	
-	$.fn.ckLoadInfiniteScrollingCSV = function(csvFileURL) {
+	$.fn.ckLoadInfiniteScrollingCSV = function(csvFileURL,options) {
 		$.ajax({
 		  url: csvFileURL,
 		  context: this
@@ -138,7 +139,8 @@
 			$(this).data('ckCSVData',csvData);
 			$(this).data('ckCurrentLoadedData',0);
 			$(this).append('<blockquote class="'+csvData[0][0]+'" cite="'+csvData[0][1]+'">'+csvData[0][1]+'</blockquote>');
-			this.ckLoad();
+			var opts = $.extend( {}, $.fn.ckLoadInfiniteScrollingCSV.defaults, options);
+			this.ckLoad(opts);
 			$(this).data('triggerTop',-1);
 			$(this).scroll(function(){
 				var wintop = $(this).scrollTop();
@@ -283,6 +285,10 @@
 		$(elm).removeClass("citekit-waiting");
 		// Catch any Markdown fields
 		//citekit_processMarkdown(elemId); TO-DO coming back to this
+		if ($.fn.ckLoad.defaults.maps) {
+			$.fn.ckLoad.defaults.maps.ckLoadLocations(elm);
+		}
+		
 		$(elm).addClass("citekit-complete");
 	}
 	
@@ -350,7 +356,7 @@
 			});
 		});
 	}
-	
+		
 	function getImageParams (obj) {
 		var thisSource = $.fn.ckLoad.defaults.source; //starts with default
 		var thisPath = "";
@@ -490,7 +496,8 @@
 		"qsICT":"ict.html?urn=",
 		"pathTextXslt":"http://folio.dyndns-web.com/citekit/xslt/citekit-gp.xsl",
 		"pathImgXslt":"http://folio.dyndns-web.com/citekit/xslt/citekit-gip.xsl",
-		"pathCollXslt":"http://folio.dyndns-web.com/citekit/xslt/xslt/citekit-coll.xsl"
+		"pathCollXslt":"http://folio.dyndns-web.com/citekit/xslt/xslt/citekit-coll.xsl",
+		"maps":false
 	};
 	
 	$.fn.ckLoadInfiniteScrollingCSV.defaults = {

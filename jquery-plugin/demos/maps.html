@@ -6,21 +6,39 @@
 	<meta name="copyright" content="2013 C.W. Blackwell, D.N. Smith, CC-License/by-nc-sa/3.0"/>
 	<link rel="stylesheet" href="http://folio.dyndns-web.com/citekit/css/cite-elements.css" type="text/css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+	<!-- Scripts needed for CiteKit +Maps -->
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<!-- End +Maps Scripts -->
 	<script type="text/javascript" src="../jquery.citekit.js"> </script>
+	<script type="text/javascript" src="../jquery.citekit+maps.js"> </script>
 	<script>
 		$(document).ready(function(){
-		    $('#scrollArea').ckLoadInfiniteScrollingCSV('infiniteScrolling_fupers.csv');
+		    $('#scrollArea').ckLoadInfiniteScrollingCSV('infiniteScrolling.csv',{"maps":$('#map')});
+			$('#map').ckLoadMaps();
 		});
+		
+		
 	</script>
 	<style>
 	.infinite-scrolling {
 		overflow:scroll;
 		height:500px;
 	}
+	#map {
+		width:40%;
+		height:400px;
+		float: right;
+	}
+	.has_location {
+		background-color:#C2FFD3;
+	}
 	</style>
+	
 </head>
 <body>
 	<h1>Auto-Load from CSV</h1>
+	<div id="map">
+	</div>
 <div class='infinite-scrolling' id='scrollArea'>
 </div>
 
